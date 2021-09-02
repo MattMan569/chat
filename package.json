@@ -1,14 +1,14 @@
 {
   "name": "chat",
   "version": "1.0.0",
+  "author": "Matthew Polsom",
+  "license": "UNLICENSED",
+  "private": true,
   "description": "",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MattMan569/chat.git"
   },
-  "author": "Matthew Polsom",
-  "license": "UNLICENSED",
-  "private": true,
   "bugs": {
     "url": "https://github.com/MattMan569/chat/issues"
   },

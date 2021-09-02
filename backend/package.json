@@ -2,11 +2,25 @@
   "name": "chat-backend",
   "version": "0.0.0",
   "description": "",
+  "author": "Matthew Polsom",
+  "license": "UNLICENSED",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattMan569/chat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MattMan569/chat/issues"
+  },
+  "homepage": "https://github.com/MattMan569/chat#readme",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Matthew Polsom",
-  "license": "UNLICENSED",
-  "private": true
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
+    "typescript": "^4.4.2"
+  }
 }

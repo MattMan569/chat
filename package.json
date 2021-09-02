@@ -15,6 +15,7 @@
   "homepage": "https://github.com/MattMan569/chat#readme",
   "workspaces": [
     "frontend",
-    "backend"
+    "backend",
+    "shared\\types"
   ]
 }

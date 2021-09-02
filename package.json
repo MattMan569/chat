@@ -1,0 +1,20 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MattMan569/chat.git"
+  },
+  "author": "Matthew Polsom",
+  "license": "UNLICENSED",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/MattMan569/chat/issues"
+  },
+  "homepage": "https://github.com/MattMan569/chat#readme",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}

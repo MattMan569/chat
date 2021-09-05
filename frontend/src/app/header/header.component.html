@@ -1,0 +1,19 @@
+<header>
+  <mat-toolbar color="primary">
+    <h1>Chat</h1>
+    <div class="spacer"></div>
+    <div id="username" *ngIf="isAuthenticated">
+      <mat-icon>account_circle</mat-icon>
+      <span>TODO Username</span>
+    </div>
+    <button mat-button (click)="onLoginClick()" *ngIf="!isAuthenticated">
+      Log in
+    </button>
+    <button mat-button (click)="onSignupClick()" *ngIf="!isAuthenticated">
+      Sign up
+    </button>
+    <button mat-button (click)="onLogoutClick()" *ngIf="isAuthenticated">
+      Log out
+    </button>
+  </mat-toolbar>
+</header>

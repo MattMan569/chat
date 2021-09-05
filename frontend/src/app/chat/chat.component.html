@@ -1,0 +1,7 @@
+<div *ngIf="isAuthenticated; else notAuthTemplate">Authed</div>
+
+<ng-template #notAuthTemplate>
+  <div>
+    <h2>Please log in or sign up to chat.</h2>
+  </div>
+</ng-template>

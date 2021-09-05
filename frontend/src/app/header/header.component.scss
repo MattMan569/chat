@@ -1,0 +1,16 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+#username {
+  min-width: 0;
+  overflow: hidden;
+
+  mat-icon {
+    vertical-align: middle;
+  }
+}
+
+mat-icon {
+  margin-right: 0.5rem;
+}

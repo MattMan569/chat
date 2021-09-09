@@ -1,13 +1,11 @@
-import mongoose, { Document, Model } from "mongoose";
+import mongoose from "mongoose";
 import { IUser } from "../types";
 
-// Define document methods
-type UserDocument = Document<IUser>
+// https://mongoosejs.com/docs/typescript.html
+// https://mongoosejs.com/docs/guide.html#methods
+// https://mongoosejs.com/docs/typescript/statics.html
 
-// Define model statics
-type UserModel = Model<UserDocument>
-
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema<IUser>({
     username: {
         type: String,
         required: true,
@@ -25,6 +23,6 @@ const userSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-export const User = mongoose.model<UserDocument, UserModel>('User', userSchema);
+export const User = mongoose.model<IUser>('User', userSchema);
 
 export default User;

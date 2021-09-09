@@ -1,17 +1,11 @@
-import mongoose, { Document, Model, Schema } from 'mongoose';
+import mongoose from 'mongoose';
 
 import User from './userModel';
 import { IAuth } from '../types';
 
-// Define document methods
-export type IAuthDocument = Document<IAuth>
-
-// Define model statics
-export type IAuthModel = Model<IAuthDocument>
-
-const authSchema = new mongoose.Schema({
+const authSchema = new mongoose.Schema<IAuth>({
     userId: {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: User,
         required: true,
     },
@@ -23,6 +17,6 @@ const authSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-export const Auth = mongoose.model<IAuthDocument, IAuthModel>('Auth', authSchema);
+export const Auth = mongoose.model<IAuth>('Auth', authSchema);
 
 export default Auth;

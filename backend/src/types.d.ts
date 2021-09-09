@@ -1,3 +1,5 @@
+import { ObjectId } from "mongoose";
+
 export interface IToken {
     username: string;
     // Issued at
@@ -13,8 +15,7 @@ export interface IUser {
 }
 
 export interface IAuth {
-    _id: string;
-    userId: string;
+    userId: ObjectId;
     refreshToken: string;
 }
 

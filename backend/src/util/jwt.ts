@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import { IToken } from '../types';
 
 // Encode the user's username into the token and then return it
-export const encodeAccessToken = (username: string): string => {
+export const encodeAccessToken = (username: string, userId: string): string => {
     if (!process.env.JWT_SECRET) {
         throw new Error('Environment variable JWT_SECRET is undefined');
     }
@@ -11,9 +11,10 @@ export const encodeAccessToken = (username: string): string => {
         throw new Error('Environment variable JWT_EXPIRES_IN is undefined');
     }
 
-    const token = jwt.sign(
+    const token = jwt.sign({
         username,
-        process.env.JWT_SECRET, {
+        userId,
+    }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRES_IN,
     });
 

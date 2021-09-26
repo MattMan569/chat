@@ -1,10 +1,16 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
+import { Session, SessionData } from 'express-session';
+import mongoose, { Document } from 'mongoose';
 
 import User from './../../models/userModel';
-import Auth from './../../models/authModel';
-import mongoose from 'mongoose';
-import { encodeAccessToken, encodeRefreshToken } from '../../util/jwt';
+import { IUser } from '../../types';
+
+const createSession = (session: Session & Partial<SessionData>, user: Document<IUser> & IUser) => {
+    session.userId = user.id;
+    session.username = user.username;
+    session.loggedIn = true;
+};
 
 export const createUser = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -14,6 +20,8 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
             username: req.body.username,
             password,
         });
+
+        createSession(req.session, user);
 
         res.status(201).json(user);
     } catch (error) {
@@ -49,10 +57,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
             return;
         }
 
-        const accessToken = encodeAccessToken(user.username, user.id);
-        const refreshToken = encodeRefreshToken(user.id);
-
-        await Auth.authorizeUser(user.id, refreshToken);
+        createSession(req.session, user);
 
         res.json();
     } catch (error) {

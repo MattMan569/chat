@@ -58,6 +58,12 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         }
 
         createSession(req.session, user);
+        res.json(user);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json();
+    }
+};
 
         res.json();
     } catch (error) {

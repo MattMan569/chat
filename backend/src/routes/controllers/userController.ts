@@ -65,7 +65,22 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-        res.json();
+export const logoutUser = async (req: Request, res: Response): Promise<void> => {
+    try {
+        if (!req.session.loggedIn) {
+            res.status(401).json();
+            return;
+        }
+
+        req.session.destroy((err) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json();
+                return;
+            }
+
+            res.json();
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json();

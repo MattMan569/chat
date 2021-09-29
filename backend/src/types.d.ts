@@ -4,7 +4,6 @@ export interface IUser {
     password: string;
 }
 
-
 declare module 'express-session' {
     interface SessionData {
         userId: string;

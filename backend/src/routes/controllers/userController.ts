@@ -53,7 +53,7 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         const valid = await bcrypt.compare(req.body.password, user.password);
 
         if (!valid) {
-            res.status(401).json('Password is incorrect');
+            res.status(400).json('Password is incorrect');
             return;
         }
 

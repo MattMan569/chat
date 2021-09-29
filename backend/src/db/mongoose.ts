@@ -11,7 +11,7 @@ export const connect = async (): Promise<void> => {
 
     // An error occurred after a successful initial connection
     mongoose.connection.on('error', (err) => {
-        console.log(err);
+        console.error(err);
     });
 };
 

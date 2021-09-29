@@ -19,7 +19,7 @@ export class AuthService {
 
   signup(username: string, password: string) {
     return new Promise<string | void>((resolve) => {
-      this.http.post(`${SERVER_URL}/signup`, { username, password }, { withCredentials: true }).subscribe(() => {
+      this.http.post(`${SERVER_URL}/signup`, { username, password }).subscribe(() => {
         resolve();
         this.authStatus.next(true);
       }, (error: HttpErrorResponse) => {
@@ -31,7 +31,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     return new Promise<string | void>((resolve) => {
-      this.http.post(`${SERVER_URL}/login`, { username, password }, { withCredentials: true }).subscribe(() => {
+      this.http.post(`${SERVER_URL}/login`, { username, password }).subscribe(() => {
         resolve();
         this.authStatus.next(true);
       }, (error: HttpErrorResponse) => {
@@ -43,7 +43,7 @@ export class AuthService {
 
   logout() {
     return new Promise<string | void>((resolve) => {
-      this.http.post(`${SERVER_URL}/logout`, null, { withCredentials: true }).subscribe(() => {
+      this.http.post(`${SERVER_URL}/logout`, null).subscribe(() => {
         resolve();
         this.authStatus.next(false);
       }, (error: HttpErrorResponse) => {

@@ -16,7 +16,7 @@ export const session = ES({
     cookie: {
         secure: process.env.ENV === 'production' ? true : false,
         maxAge: 604800000, // 7 days
-        // sameSite: true, // TODO test
+        sameSite: true, // TODO test
     },
     genid: () => uuidv4(),
     saveUninitialized: false,

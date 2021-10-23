@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { io, Socket } from 'socket.io-client';
+import { ChatService } from '../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,8 +12,9 @@ import { AuthService } from '../services/auth.service';
 export class ChatComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   authSubscription!: Subscription;
+  private socket!: Socket | null;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.authSubscription = this.authService.getAuthStatus().subscribe((authStatus) => {

@@ -2,3 +2,24 @@ h2 {
   text-align: center;
   margin-top: 25vh;
 }
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: scroll;
+
+  div:not(:first-child):not(:last-child) {
+    padding: 0.5rem 0;
+  }
+}
+
+.compose {
+  border-top: 2px solid black;
+  padding: 1rem;
+}

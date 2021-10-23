@@ -11,7 +11,14 @@ const SERVER_URL = `${environment.apiUrl}/user`;
 export class AuthService {
   private authStatus = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.http.get<boolean>(`${SERVER_URL}/validate`).subscribe((valid) => {
+      this.authStatus.next(valid);
+    }, (error: HttpErrorResponse) => {
+      console.error(error);
+      this.authStatus.next(false);
+    });
+  }
 
   getAuthStatus() {
     return this.authStatus.asObservable();

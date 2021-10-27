@@ -20,6 +20,12 @@ h2 {
 }
 
 .compose {
+  display: flex;
+  align-items: center;
   border-top: 2px solid black;
-  padding: 1rem;
+  padding: 0.5rem;
+
+  .mat-form-field {
+    flex: 1;
+  }
 }

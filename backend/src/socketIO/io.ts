@@ -4,6 +4,7 @@ import sharedsession from 'express-socket.io-session';
 import socketio from 'socket.io';
 import session from 'express-session';
 
+import { IMessage } from 'types';
 import server from '../app/server';
 import sessionMiddleware from '../middleware/session';
 
@@ -26,6 +27,13 @@ io.on('connection', (socket) => {
     const username = handshake.session.username;
 
     socket.emit('serverMessage', `${username} has joined`);
+
+    socket.on('message', (message: string) => {
+        io.emit('message', {
+            message,
+            author: handshake.session?.username,
+        } as IMessage);
+    });
 
     socket.on('disconnect', () => {
         socket.emit('serverMessage', `${username} has left`);

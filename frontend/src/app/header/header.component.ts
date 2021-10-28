@@ -14,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   authSubscription!: Subscription;
   isAuthenticated = false;
+  username: string | undefined | null;
 
   constructor(
     private loginDialog: MatDialog,
@@ -24,6 +25,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.authSubscription = this.authService.getAuthStatus().subscribe((authStatus) => {
       this.isAuthenticated = authStatus;
+      this.username = this.authService.getUsername();
     });
   }
 

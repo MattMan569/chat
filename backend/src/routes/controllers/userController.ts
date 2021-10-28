@@ -5,6 +5,7 @@ import mongoose, { Document } from 'mongoose';
 
 import User from './../../models/userModel';
 import { IUser } from '../../types';
+import { IUserFrontend } from 'types';
 
 const createSession = (session: Session & Partial<SessionData>, user: Document<IUser> & IUser) => {
     session.userId = user.id;
@@ -58,7 +59,10 @@ export const loginUser = async (req: Request, res: Response): Promise<void> => {
         }
 
         createSession(req.session, user);
-        res.json(user);
+        res.json({
+            id: user.id,
+            username: user.username,
+        } as IUserFrontend);
     } catch (error) {
         console.error(error);
         res.status(500).json();
@@ -90,7 +94,10 @@ export const logoutUser = async (req: Request, res: Response): Promise<void> => 
 export const validateUser = async (req: Request, res: Response): Promise<void> => {
     try {
         if (req.session.loggedIn) {
-            res.json(true);
+            res.json({
+                id: req.session.userId,
+                username: req.session.username,
+            });
         } else {
             res.json(false);
         }

@@ -13,7 +13,16 @@ interface Handshake {
     sessionID?: string | undefined;
 }
 
-const io = new socketio.Server(server);
+if (!process.env.ENV) {
+    throw new Error('Environment variable ENV is undefined');
+}
+
+const io = new socketio.Server(server, {
+    cors: {
+        credentials: true,
+        origin: process.env.ENV === 'production' ? true : 'http://localhost:4200',
+    },
+});
 
 io.use(sharedsession(sessionMiddleware));
 

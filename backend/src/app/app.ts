@@ -12,7 +12,7 @@ export const app = express();
 
 app.use(cors({
     credentials: true,
-    origin: process.env.ENV === 'production' ? true : '*',
+    origin: process.env.ENV === 'production' ? true : 'http://localhost:4200',
 }));
 
 app.use(express.json());

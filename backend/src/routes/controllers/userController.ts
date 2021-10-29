@@ -24,7 +24,10 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
 
         createSession(req.session, user);
 
-        res.status(201).json(user);
+        res.status(201).json({
+            id: user.id,
+            username: user.username,
+        } as IUserFrontend);
     } catch (error) {
         if (error instanceof mongoose.Error) {
             if (error.name) {

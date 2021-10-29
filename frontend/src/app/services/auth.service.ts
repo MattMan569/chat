@@ -39,9 +39,10 @@ export class AuthService {
 
   signup(username: string, password: string) {
     return new Promise<string | void>((resolve) => {
-      this.http.post(`${SERVER_URL}/signup`, { username, password }).subscribe(() => {
-        resolve();
+      this.http.post<IUserFrontend>(`${SERVER_URL}/signup`, { username, password }).subscribe((user) => {
+        this.username = user.username;
         this.authStatus.next(true);
+        resolve();
       }, (error: HttpErrorResponse) => {
         console.error(error);
         resolve(error.name);

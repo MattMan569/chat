@@ -3,6 +3,20 @@ h2 {
   margin-top: 25vh;
 }
 
+mat-divider {
+  display: inline;
+  width: 2px;
+  margin: 0 1rem;
+}
+
+mat-card {
+  padding: 0.75rem;
+
+  &:not(:last-child) {
+    margin-bottom: 0.5rem;
+  }
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -13,10 +27,6 @@ h2 {
   flex: 1;
   padding: 1rem;
   overflow-y: scroll;
-
-  div:not(:first-child):not(:last-child) {
-    padding: 0.5rem 0;
-  }
 }
 
 .compose {

@@ -1,9 +1,10 @@
 <div class="container" *ngIf="isAuthenticated; else notAuthTemplate">
   <div class="messages">
-    <div *ngFor="let message of messages">
+    <mat-card *ngFor="let message of messages">
       <span>{{ message.author }}</span>
+      <mat-divider [vertical]="true"></mat-divider>
       <span>{{ message.message }}</span>
-    </div>
+    </mat-card>
   </div>
 
   <div class="compose">

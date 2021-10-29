@@ -20,6 +20,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.authSubscription = this.authService.getAuthStatus().subscribe((authStatus) => {
+      if (!authStatus) {
+        this.messages = [];
+      }
+
       this.isAuthenticated = authStatus;
     });
 

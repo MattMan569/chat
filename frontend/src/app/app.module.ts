@@ -13,6 +13,7 @@ import { SignupComponent } from './dialogs/signup/signup.component';
 import { ChatComponent } from './chat/chat.component';
 
 import { HttpRequestInterceptor } from './interceptors/httpRequestInterceptor';
+import { FocusDirective } from './chat/focus.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpRequestInterceptor } from './interceptors/httpRequestInterceptor';
     HeaderComponent,
     LoginComponent,
     SignupComponent,
-    ChatComponent
+    ChatComponent,
+    FocusDirective
   ],
   imports: [
     BrowserModule,

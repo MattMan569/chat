@@ -35,8 +35,6 @@ io.on('connection', (socket) => {
 
     const username = handshake.session.username;
 
-    socket.emit('serverMessage', `${username} has joined`);
-
     socket.on('message', (message: string) => {
         io.emit('message', {
             message,
@@ -45,6 +43,14 @@ io.on('connection', (socket) => {
     });
 
     socket.on('disconnect', () => {
-        socket.emit('serverMessage', `${username} has left`);
+        io.emit('message', {
+            message: `${username} has left`,
+            author: '',
+        } as IMessage);
     });
+
+    io.emit('message', {
+        message: `${username} has joined`,
+        author: '',
+    } as IMessage);
 });

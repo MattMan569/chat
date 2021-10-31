@@ -1,7 +1,7 @@
 <div class="container" *ngIf="isAuthenticated; else notAuthTemplate">
   <div class="messages">
     <mat-card *ngFor="let message of messages">
-      <div *ngIf="message.author">
+      <div class="author" *ngIf="message.author">
         <span>{{ message.author }}</span>
         <mat-divider [vertical]="true"></mat-divider>
       </div>

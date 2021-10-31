@@ -45,7 +45,19 @@ export class AuthService {
         resolve();
       }, (error: HttpErrorResponse) => {
         console.error(error);
-        resolve(error.name);
+        let errorMessage: string;
+        switch (error.status) {
+          case 500:
+            errorMessage = 'Server error, please try again';
+            break;
+          case 400:
+            errorMessage = error.error;
+            break;
+          default:
+            errorMessage = 'Unknown error';
+            break;
+        }
+        resolve(errorMessage);
       });
     });
   }
@@ -58,7 +70,19 @@ export class AuthService {
         resolve();
       }, (error: HttpErrorResponse) => {
         console.error(error);
-        resolve(error.name);
+        let errorMessage: string;
+        switch (error.status) {
+          case 500:
+            errorMessage = 'Server error, please try again';
+            break;
+          case 400:
+            errorMessage = 'Incorrect login information';
+            break;
+          default:
+            errorMessage = 'Unknown error';
+            break;
+        }
+        resolve(errorMessage);
       });
     });
   }

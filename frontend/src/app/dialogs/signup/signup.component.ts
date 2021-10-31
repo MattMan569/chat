@@ -11,6 +11,7 @@ export class SignupComponent {
   @ViewChild('usernameInput') private usernameInput!: ElementRef;
   @ViewChild('passwordInput') private passwordInput!: ElementRef;
   @ViewChild('confirmInput') private confirmInput!: ElementRef;
+  error: string | void = '';
 
   constructor(
     private dialogRef: MatDialogRef<SignupComponent>,
@@ -18,17 +19,32 @@ export class SignupComponent {
   ) { }
 
   async onSignup() {
+    this.error = '';
     const username = (this.usernameInput.nativeElement as HTMLInputElement).value;
     const password = (this.passwordInput.nativeElement as HTMLInputElement).value;
     const confirm = (this.confirmInput.nativeElement as HTMLInputElement).value;
 
-    // TODO
+    if (!username) {
+      this.error = 'Username is required';
+      return;
+    }
+    if (!password) {
+      this.error = 'Password is required';
+      return;
+    }
+    if (!confirm) {
+      this.error = 'Please confirm your password';
+      return;
+    }
     if (password !== confirm) {
-      console.log('mismatch');
+      this.error = 'Passwords do not match';
       return;
     }
 
-    await this.authService.signup(username, password);
-    this.dialogRef.close();
+    this.error = await this.authService.signup(username, password);
+
+    if (!this.error) {
+      this.dialogRef.close();
+    }
   }
 }

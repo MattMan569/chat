@@ -2,6 +2,21 @@
   flex: 1 1 auto;
 }
 
+.error {
+  visibility: hidden;
+  color: red;
+  font-size: 0.75rem;
+
+  &::after {
+    visibility: hidden;
+    content: "&nbsp;";
+  }
+}
+
+.show {
+  visibility: visible;
+}
+
 mat-form-field {
   display: block;
 }

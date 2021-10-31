@@ -24,6 +24,8 @@
   </mat-form-field>
 </div>
 
+<span class="error" [class.show]="error">{{ error }}</span>
+
 <div mat-dialog-actions>
   <span class="spacer"></span>
   <button mat-button mat-dialog-close>Cancel</button>

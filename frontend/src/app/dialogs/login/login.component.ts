@@ -11,6 +11,7 @@ import { AuthData } from "types";
 export class LoginComponent {
   @ViewChild('usernameInput') private usernameInput!: ElementRef;
   @ViewChild('passwordInput') private passwordInput!: ElementRef;
+  error: string | void = '';
 
   constructor(
     private dialogRef: MatDialogRef<LoginComponent>,
@@ -18,10 +19,23 @@ export class LoginComponent {
   ) { }
 
   async onLogin() {
+    this.error = '';
     const username = (this.usernameInput.nativeElement as HTMLInputElement).value;
     const password = (this.passwordInput.nativeElement as HTMLInputElement).value;
 
-    await this.authService.login(username, password);
-    this.dialogRef.close();
+    if (!username) {
+      this.error = 'Username is required';
+      return;
+    }
+    if (!password) {
+      this.error = 'Password is required';
+      return;
+    }
+
+    this.error = await this.authService.login(username, password);
+
+    if (!this.error) {
+      this.dialogRef.close();
+    }
   }
 }

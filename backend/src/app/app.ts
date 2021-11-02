@@ -17,10 +17,9 @@ app.use(cors({
 
 app.use(express.json());
 
-// TODO check if necessary 
-// app.use(express.urlencoded({
-//     extended: true,
-// }));
+app.use(express.urlencoded({
+    extended: true,
+}));
 
 app.use(session);
 

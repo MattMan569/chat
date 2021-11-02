@@ -1,6 +1,9 @@
 <div class="container" *ngIf="isAuthenticated; else notAuthTemplate">
   <div class="messages" #messagesDiv (scroll)="onScroll()">
-    <mat-card *ngFor="let message of messages">
+    <mat-card
+      [class.highlight]="message.author === username"
+      *ngFor="let message of messages"
+    >
       <div class="author" *ngIf="message.author">
         <span>{{ message.author }}</span>
         <mat-divider [vertical]="true"></mat-divider>

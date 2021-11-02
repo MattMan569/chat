@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth.service';
 import { ChatService } from '../services/chat.service';
 import { IMessage } from 'types';
 
+// TODO messages that this user has sent render with username on right side w/ highlight
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -16,6 +18,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
   messageSubscription!: Subscription;
   inputValue: string | undefined;
   messages: IMessage[] = [];
+  username: string | undefined | null;
   private checkScroll = false;
   private scrollAtBottom = true;
 
@@ -29,6 +32,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
       }
 
       this.isAuthenticated = authStatus;
+      this.username = this.authService.getUsername();
     });
 
     this.messageSubscription = this.chatService.getMessageObservable().subscribe((message) => {
